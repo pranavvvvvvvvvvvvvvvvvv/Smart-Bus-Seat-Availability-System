@@ -1,0 +1,20 @@
+name: Build
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Compile
+        run: gcc -Wall -Wextra -std=c11 -o bus_seat_system bus_seat_system.c
+
+      - name: Smoke test (login, book, cancel, exit)
+        run: |
+          printf 'admin\n123\n1\n5\nTest User\n2\n5\n4\n' | ./bus_seat_system | grep "Exiting... Thank you!"
