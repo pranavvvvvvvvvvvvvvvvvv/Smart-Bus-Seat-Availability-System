@@ -1,6 +1,7 @@
 # Compiled files
-*.class
-out/
+*.o
+*.exe
+bus_seat_system
 
 # Editor / OS files
 .vscode/
